@@ -1,0 +1,15 @@
+@startuml createProject
+
+actor "developer"
+
+"developer" -> "client":
+"client" -> "manager": create project by name
+"manager" -> "manager": new project
+"manager" -> "engine": init templates
+"engine" -> "manager":
+"manager" -> "resource access": generate project structure
+"resource access" -> "manager":
+"manager" -> "client": (error)
+"client" -> "developer":
+
+@enduml
