@@ -11,18 +11,22 @@ import (
 // DefaultTemplateEngine ...
 type DefaultTemplateEngine struct {
 	access fs.FS
+	files  []string
 	path   string
 }
 
 func (a *DefaultTemplateEngine) InitTemplates(p *project.Project) error {
-	p.Templates["main.go"] = safeReadAll(a.path + "/" + "main.go")
+	for _, file := range a.files {
+		p.Templates[file] = safeReadAll(a.path + "/" + file)
+	}
 	return nil
 }
 
 // NewDefaultTemplateEngine ...
-func NewDefaultTemplateEngine(access fs.FS, path string) project.TemplateEngine {
+func NewDefaultTemplateEngine(access fs.FS, path string, files []string) project.TemplateEngine {
 	return &DefaultTemplateEngine{
 		access: access,
+		files:  files,
 		path:   path,
 	}
 }

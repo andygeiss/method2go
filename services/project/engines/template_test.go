@@ -13,7 +13,7 @@ import (
 var content embed.FS
 
 func TestDefaultTemplateEngine_InitTemplates_Should_Return_Without_An_Error(t *testing.T) {
-	te := engines.NewDefaultTemplateEngine(&content, "testdata/templates")
+	te := engines.NewDefaultTemplateEngine(&content, "testdata/templates", []string{"main.go"})
 	project := project.NewProject("test")
 	err := te.InitTemplates(project)
 	mainGoContent, mainGoDefined := project.Templates["main.go"]
