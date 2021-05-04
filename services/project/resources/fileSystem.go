@@ -1,19 +1,35 @@
 package resources
 
-import "github.com/andygeiss/method2go/services/project"
+import (
+	"os"
+	"path/filepath"
+
+	"github.com/andygeiss/method2go/services/project"
+)
 
 // FileSystem ...
 type FileSystem struct {
-	path string
+	files []string
+	path  string
 }
 
 func (a *FileSystem) GenerateProjectStructure(p *project.Project) (err error) {
+	for _, file := range a.files {
+		dst := filepath.Join(a.path, file)
+		if err := CreateFoldersByFile(dst); err != nil {
+			return err
+		}
+		if err := os.WriteFile(dst, []byte(p.Contents[file]), 0644); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
 // NewFileSystem ...
-func NewFileSystem(path string) project.ResourceAccess {
+func NewFileSystem(path string, files []string) project.ResourceAccess {
 	return &FileSystem{
-		path: path,
+		files: files,
+		path:  path,
 	}
 }
