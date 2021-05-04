@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"io"
 	"io/fs"
-	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"text/template"
@@ -22,7 +22,7 @@ type DefaultTemplateEngine struct {
 
 func (a *DefaultTemplateEngine) InitTemplates(p *project.Project) error {
 	for _, file := range a.files {
-		p.Templates[file] = safeReadAll(a.path + "/" + file)
+		p.Templates[file] = safeReadAll(a.access, filepath.Join(a.path, file))
 		p.Contents[file] = safeExecuteTemplate(p.Templates[file], nil)
 	}
 	return nil
@@ -60,8 +60,8 @@ func safeExecuteTemplate(src string, data interface{}) string {
 	return buf.String()
 }
 
-func safeReadAll(path string) string {
-	file, err := os.Open(path)
+func safeReadAll(access fs.FS, path string) string {
+	file, err := access.Open(path)
 	if err != nil {
 		return ""
 	}

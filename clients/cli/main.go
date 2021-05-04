@@ -1,10 +1,13 @@
 package main
 
 import (
+	"context"
 	"embed"
 	"log"
 
+	"github.com/andygeiss/method2go/services/project"
 	"github.com/andygeiss/method2go/services/project/engines"
+	"github.com/andygeiss/method2go/services/project/resources"
 )
 
 var (
@@ -13,12 +16,17 @@ var (
 	version string = "no-version"
 )
 
-//go:embed configs
+//go:embed .configs
 var content embed.FS
 
 func main() {
 	log.Printf("%s %s (%s)\n", name, version, build)
+	files := []string{
+		"clients/api/main.go",
+	}
+	ra := resources.NewFileSystem("testdata", files)
+	te := engines.NewDefaultTemplateEngine(&content, ".configs", files)
+	pm := project.NewManager(te, ra)
 
-	te := engines.NewDefaultTemplateEngine(&content, "configs/method2go_template", []string{"main.go"})
-
+	_ = pm.CreateByName(context.Background(), "testdata")
 }

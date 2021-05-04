@@ -14,7 +14,11 @@ func TestFileSystem_GenerateProjectStructure_Should_Return_Without_An_Error(t *t
 	os.RemoveAll("testdata")
 	path := filepath.Join("testdata", "foo", "bar")
 	resourceAccess := resources.NewFileSystem(path, []string{"main.go"})
-	project := &project.Project{}
+	project := &project.Project{
+		Contents: map[string]string{
+			"clients/api/main.go": "foo",
+		},
+	}
 	err := resourceAccess.GenerateProjectStructure(project)
 	exists := resources.HasFile(filepath.Join(path, "main.go"))
 	assert.That("error should be nil", t, err, nil)
