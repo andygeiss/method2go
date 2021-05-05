@@ -7,13 +7,13 @@ LDFLAGS=-ldflags "-s -w -X=main.build=$(BUILD) -X=main.name=$(NAME) -X=main.vers
 SRC=clients/cli/main.go
 BIN=build/$(NAME)
 
-all : test compile run
+all : test compile install
 
 compile :
 	@go build $(LDFLAGS) -o $(BIN) $(SRC)
 
-run :
-	@$(BIN)
+install :
+	@mv $(BIN) $(GOPATH)/bin/$(NAME)
 
 test :
 	@go test -v ./...
