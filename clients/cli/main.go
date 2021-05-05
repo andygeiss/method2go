@@ -5,6 +5,7 @@ import (
 	"embed"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/andygeiss/method2go/services/project"
 	"github.com/andygeiss/method2go/services/project/engines"
@@ -24,11 +25,12 @@ func ensureDefaults() {
 	if len(os.Args) == 1 {
 		fmt.Printf("\n%s %s (%s)\n", name, version, build)
 		fmt.Printf(`
-  This tool generates a basic Go project structure based on "The Method".
+This tool generates a basic Go system design based on building-blocks from "The Method".
 
 Usage:	  ` + os.Args[0] + ` <Project-Name>
 
 Example:  ` + os.Args[0] + ` template
+
 `)
 		os.Exit(255)
 	}
@@ -36,26 +38,27 @@ Example:  ` + os.Args[0] + ` template
 
 func main() {
 	files := []string{
-		"clients/api/contracts/contracts.go",
-		"clients/api/contracts/contracts.http",
-		"clients/api/handlers/status.go",
-		"clients/api/handlers/utils.go",
-		"clients/api/main.go",
-		"clients/cli/main.go",
-		"clients/web/scripts/app.js",
-		"clients/web/styles/app.scss",
-		"clients/web/styles/colors.scss",
-		"clients/web/index.html",
-		"services/status/engines/lowerCase.go",
-		"services/status/engines/lowerCase_test.go",
-		"services/status/resources/inMemory.go",
-		"services/status/resources/inMemory_test.go",
-		"services/status/engine.go",
-		"services/status/manager.go",
-		"services/status/manager_test.go",
-		"services/status/mockups_test.go",
-		"services/status/resourceAccess.go",
+		filepath.FromSlash("clients/api/contracts/contracts.go"),
+		filepath.FromSlash("clients/api/contracts/contracts.http"),
+		filepath.FromSlash("clients/api/handlers/status.go"),
+		filepath.FromSlash("clients/api/handlers/utils.go"),
+		filepath.FromSlash("clients/api/main.go"),
+		filepath.FromSlash("clients/cli/main.go"),
+		filepath.FromSlash("clients/web/scripts/app.js"),
+		filepath.FromSlash("clients/web/styles/app.scss"),
+		filepath.FromSlash("clients/web/styles/colors.scss"),
+		filepath.FromSlash("clients/web/index.html"),
+		filepath.FromSlash("services/status/engines/lowerCase.go"),
+		filepath.FromSlash("services/status/engines/lowerCase_test.go"),
+		filepath.FromSlash("services/status/resources/inMemory.go"),
+		filepath.FromSlash("services/status/resources/inMemory_test.go"),
+		filepath.FromSlash("services/status/engine.go"),
+		filepath.FromSlash("services/status/manager.go"),
+		filepath.FromSlash("services/status/manager_test.go"),
+		filepath.FromSlash("services/status/mockups_test.go"),
+		filepath.FromSlash("services/status/resourceAccess.go"),
 		"Makefile",
+		"status.plantuml",
 	}
 	ensureDefaults()
 	name := os.Args[1]
