@@ -46,8 +46,15 @@ func main() {
 		"clients/web/styles/app.scss",
 		"clients/web/styles/colors.scss",
 		"clients/web/index.html",
+		"services/status/engines/lowerCase.go",
+		"services/status/engines/lowerCase_test.go",
+		"services/status/resources/inMemory.go",
+		"services/status/resources/inMemory_test.go",
+		"services/status/engine.go",
 		"services/status/manager.go",
 		"services/status/manager_test.go",
+		"services/status/mockups_test.go",
+		"services/status/resourceAccess.go",
 		"Makefile",
 	}
 	ensureDefaults()
