@@ -3,7 +3,8 @@ package main
 import (
 	"context"
 	"embed"
-	"log"
+	"fmt"
+	"os"
 
 	"github.com/andygeiss/method2go/services/project"
 	"github.com/andygeiss/method2go/services/project/engines"
@@ -19,14 +20,40 @@ var (
 //go:embed .configs
 var content embed.FS
 
-func main() {
-	log.Printf("%s %s (%s)\n", name, version, build)
-	files := []string{
-		"clients/api/main.go",
+func ensureDefaults() {
+	if len(os.Args) == 1 {
+		fmt.Printf("\n%s %s (%s)\n", name, version, build)
+		fmt.Printf(`
+  This tool generates a basic Go project structure based on "The Method".
+
+Usage:	  ` + os.Args[0] + ` <Project-Name>
+
+Example:  ` + os.Args[0] + ` template
+`)
+		os.Exit(255)
 	}
-	ra := resources.NewFileSystem("testdata", files)
+}
+
+func main() {
+	files := []string{
+		"clients/api/contracts/contracts.go",
+		"clients/api/contracts/contracts.http",
+		"clients/api/handlers/status.go",
+		"clients/api/handlers/utils.go",
+		"clients/api/main.go",
+		"clients/cli/main.go",
+		"clients/web/scripts/app.js",
+		"clients/web/styles/app.scss",
+		"clients/web/styles/colors.scss",
+		"clients/web/index.html",
+		"services/status/manager.go",
+		"services/status/manager_test.go",
+		"Makefile",
+	}
+	ensureDefaults()
+	name := os.Args[1]
+	ra := resources.NewFileSystem(name, files)
 	te := engines.NewDefaultTemplateEngine(&content, ".configs", files)
 	pm := project.NewManager(te, ra)
-
-	_ = pm.CreateByName(context.Background(), "testdata")
+	_ = pm.CreateByName(context.Background(), name)
 }

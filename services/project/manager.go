@@ -2,6 +2,8 @@ package project
 
 import (
 	"context"
+	"os"
+	"os/exec"
 )
 
 // Manager ...
@@ -25,6 +27,13 @@ func (a *Manager) CreateByName(c context.Context, name string) (p *Project) {
 	if err := a.ra.GenerateProjectStructure(p); err != nil {
 		a.err = err
 	}
+	// Initialize Go module
+	os.Chdir(name)
+	exec.Command("go", "mod", "init").Run()
+	// Initialize Git repository
+	exec.Command("git", "init").Run()
+	exec.Command("git", "add", ".").Run()
+	exec.Command("git", "commit", "-m", "initial commit", ".").Run()
 	return
 }
 

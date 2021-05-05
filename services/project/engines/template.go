@@ -23,7 +23,7 @@ type DefaultTemplateEngine struct {
 func (a *DefaultTemplateEngine) InitTemplates(p *project.Project) error {
 	for _, file := range a.files {
 		p.Templates[file] = safeReadAll(a.access, filepath.Join(a.path, file))
-		p.Contents[file] = safeExecuteTemplate(p.Templates[file], nil)
+		p.Contents[file] = safeExecuteTemplate(p.Templates[file], p)
 	}
 	return nil
 }

@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/andygeiss/method2go_template/services/status"
+	"{{ .Module }}/services/status"
 	assert "github.com/andygeiss/utilities/testing"
 )
 

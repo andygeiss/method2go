@@ -2,6 +2,7 @@ package project_test
 
 import (
 	"context"
+	"os"
 	"testing"
 
 	"github.com/andygeiss/method2go/services/project"
@@ -16,4 +17,5 @@ func Test_Manager_CreateProjectByName_Should_Return_Without_An_Error(t *testing.
 	project := projectManager.CreateByName(ctx, "foo")
 	assert.That("error should be nil", t, projectManager.Error(), nil)
 	assert.That("project should not be nil", t, project == nil, false)
+	os.RemoveAll("go.mod")
 }

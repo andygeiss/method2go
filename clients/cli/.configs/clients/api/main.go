@@ -5,8 +5,8 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 
-	"github.com/andygeiss/method2go_template/clients/api/handlers"
-	"github.com/andygeiss/method2go_template/services/status"
+	"{{ .Module }}/clients/api/handlers"
+	"{{ .Module }}/services/status"
 )
 
 var (

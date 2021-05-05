@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/andygeiss/method2go_template/clients/api/contracts"
-	"github.com/andygeiss/method2go_template/services/status"
+	"{{ .Module }}/clients/api/contracts"
+	"{{ .Module }}/services/status"
 	"github.com/andygeiss/utilities/logging"
 	"github.com/andygeiss/utilities/tracing"
 )
