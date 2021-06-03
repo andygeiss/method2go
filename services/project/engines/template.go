@@ -22,8 +22,10 @@ type DefaultTemplateEngine struct {
 
 func (a *DefaultTemplateEngine) InitTemplates(p *project.Project) error {
 	for _, file := range a.files {
-		p.Templates[file] = safeReadAll(a.access, filepath.Join(a.path, file))
-		p.Contents[file] = safeExecuteTemplate(p.Templates[file], p)
+		src := filepath.ToSlash(filepath.Join(a.path, file))
+		raw := safeReadAll(a.access, src)
+		p.Templates[file] = raw
+		p.Contents[file] = safeExecuteTemplate(raw, p)
 	}
 	return nil
 }

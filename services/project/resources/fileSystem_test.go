@@ -12,15 +12,14 @@ import (
 
 func TestFileSystem_GenerateProjectStructure_Should_Return_Without_An_Error(t *testing.T) {
 	os.RemoveAll("testdata")
-	path := filepath.Join("testdata", "foo", "bar")
-	resourceAccess := resources.NewFileSystem(path, []string{"main.go"})
+	resourceAccess := resources.NewFileSystem("testdata", []string{"foo/bar/foo.txt"})
 	project := &project.Project{
 		Contents: map[string]string{
-			"clients/api/main.go": "foo",
+			"foo/bar/foo.txt": "bar",
 		},
 	}
 	err := resourceAccess.GenerateProjectStructure(project)
-	exists := resources.HasFile(filepath.Join(path, "main.go"))
+	exists := resources.HasFile(filepath.Join("testdata", "foo", "bar", "foo.txt"))
 	assert.That("error should be nil", t, err, nil)
 	assert.That("project should not be nil", t, project == nil, false)
 	assert.That("foo/bar/main.go should exists", t, exists, true)
