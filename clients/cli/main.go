@@ -57,6 +57,7 @@ func main() {
 		"services/status/mockups_test.go",
 		"services/status/repository.go",
 		"Makefile",
+		"make.bat",
 		"status.plantuml",
 	}
 	ensureDefaults()
