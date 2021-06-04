@@ -32,9 +32,10 @@ func NewProject(name string) *Project {
 }
 
 func getModulePathFromAbsolute(path string) string {
-	parts := strings.Split(path, "src"+string(filepath.Separator))
+	path = filepath.ToSlash(path)
+	parts := strings.Split(path, "src/")
 	if len(parts) > 1 {
 		return parts[1]
 	}
-	return filepath.ToSlash(parts[0])
+	return parts[0]
 }

@@ -12,6 +12,6 @@ func (a *InMemoryStatus) ReadStatus() (text string, err error) {
 }
 
 // NewInMemoryStatus ...
-func NewInMemoryStatus() status.ResourceAccess {
+func NewInMemoryStatus() status.Repository {
 	return &InMemoryStatus{}
 }
