@@ -7,7 +7,7 @@ import (
 
 	"{{ .Module }}/clients/api/handlers"
 	"{{ .Module }}/services/status/engines"
-	"{{ .Module }}/services/status/resources"
+	"{{ .Module }}/services/status/repositories"
 	"{{ .Module }}/services/status"
 )
 
@@ -20,11 +20,11 @@ var (
 func main() {
 	log.Printf("%s %s (%s)\n", name, version, build)
 	// ResourceAccess
-	access := resources.NewInMemoryStatus()
+	repository := repositories.NewInMemoryStatus()
 	// Engines
 	engine := engines.NewTransformationEngine()
 	// Managers
-	statusManager := status.NewManager("status.Manager", engine, access)
+	statusManager := status.NewManager("status.Manager", engine, repository)
 	// Handlers
 	http.HandleFunc("/status", handlers.NewStatusHandler(statusManager))
 	http.ListenAndServe(":3000", nil)
