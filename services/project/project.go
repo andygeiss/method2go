@@ -36,5 +36,5 @@ func getModulePathFromAbsolute(path string) string {
 	if len(parts) > 1 {
 		return parts[1]
 	}
-	return parts[0]
+	return filepath.ToSlash(parts[0])
 }
