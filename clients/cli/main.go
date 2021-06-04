@@ -8,7 +8,7 @@ import (
 
 	"github.com/andygeiss/method2go/services/project"
 	"github.com/andygeiss/method2go/services/project/engines"
-	"github.com/andygeiss/method2go/services/project/resources"
+	"github.com/andygeiss/method2go/services/project/repositories"
 )
 
 var (
@@ -61,7 +61,7 @@ func main() {
 	}
 	ensureDefaults()
 	name := os.Args[1]
-	ra := resources.NewFileSystem(name, files)
+	ra := repositories.NewFileSystem(name, files)
 	te := engines.NewDefaultTemplateEngine(&content, ".configs", files)
 	pm := project.NewManager(te, ra)
 	_ = pm.CreateByName(context.Background(), name)

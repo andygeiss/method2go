@@ -1,6 +1,6 @@
 package project
 
-// ResourceAccess ...
-type ResourceAccess interface {
+// Repository ...
+type Repository interface {
 	GenerateProjectStructure(p *Project) (err error)
 }

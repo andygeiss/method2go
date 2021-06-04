@@ -8,7 +8,7 @@ import (
 
 // Manager ...
 type Manager struct {
-	ra  ResourceAccess
+	r   Repository
 	te  TemplateEngine
 	err error
 }
@@ -24,7 +24,7 @@ func (a *Manager) CreateByName(c context.Context, name string) (p *Project) {
 	// Init templates
 	a.te.InitTemplates(p)
 	// Generate the project structure.
-	if err := a.ra.GenerateProjectStructure(p); err != nil {
+	if err := a.r.GenerateProjectStructure(p); err != nil {
 		a.err = err
 	}
 	// Initialize Go module
@@ -43,9 +43,9 @@ func (a *Manager) Error() error {
 }
 
 // NewManager ...
-func NewManager(te TemplateEngine, ra ResourceAccess) *Manager {
+func NewManager(te TemplateEngine, r Repository) *Manager {
 	return &Manager{
-		ra: ra,
+		r:  r,
 		te: te,
 	}
 }

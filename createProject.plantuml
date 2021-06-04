@@ -7,8 +7,8 @@ actor "developer"
 "manager" -> "manager": new project
 "manager" -> "engine": init templates
 "engine" -> "manager":
-"manager" -> "resource access": generate project structure
-"resource access" -> "manager":
+"manager" -> "repository": generate project structure
+"repository" -> "manager":
 "manager" -> "client": (error)
 "client" -> "developer":
 
