@@ -1,8 +1,8 @@
 package status_test
 
-type MockupResourceAccess struct{}
+type MockupRepository struct{}
 
-func (a *MockupResourceAccess) ReadStatus() (text string, err error) {
+func (a *MockupRepository) ReadStatus() (text string, err error) {
 	return "OK", nil
 }
 

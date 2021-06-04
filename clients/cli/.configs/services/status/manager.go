@@ -4,10 +4,10 @@ import "context"
 
 // Manager ...
 type Manager struct {
-	ID     string
-	access ResourceAccess
-	engine TransformationEngine
-	err    error
+	ID         string
+	repository Repository
+	engine     TransformationEngine
+	err        error
 }
 
 // Error ...
@@ -20,7 +20,7 @@ func (a *Manager) GetStatus(ctx context.Context) (text string) {
 	if a.err != nil {
 		return
 	}
-	text, err := a.access.ReadStatus()
+	text, err := a.repository.ReadStatus()
 	if err != nil {
 		a.err = err
 		return
@@ -30,10 +30,10 @@ func (a *Manager) GetStatus(ctx context.Context) (text string) {
 }
 
 // NewManager ...
-func NewManager(id string, engine TransformationEngine, access ResourceAccess) *Manager {
+func NewManager(id string, engine TransformationEngine, repository Repository) *Manager {
 	return &Manager{
-		ID:     id,
-		access: access,
-		engine: engine,
+		ID:         id,
+		repository: repository,
+		engine:     engine,
 	}
 }

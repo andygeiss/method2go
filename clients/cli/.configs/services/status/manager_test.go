@@ -9,9 +9,9 @@ import (
 )
 
 func TestManager_GetStatus_Should_Return_Without_An_Error(t *testing.T) {
-	access := &MockupResourceAccess{}
+	repository := &MockupRepository{}
 	engine := &MockupTransformationEngine{}
-	manager := status.NewManager("status.Manager", engine, access)
+	manager := status.NewManager("status.Manager", engine, repository)
 	text := manager.GetStatus(context.Background())
 	err := manager.Error()
 	assert.That("error should be nil", t, err, nil)
