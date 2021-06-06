@@ -44,6 +44,8 @@ func main() {
 		"clients/api/main.go",
 		"clients/cli/main.go",
 		"clients/web/scripts/app.js",
+		"clients/web/scripts/app.min.js",
+		"clients/web/scripts/gsap.min.js",
 		"clients/web/styles/app.scss",
 		"clients/web/styles/colors.scss",
 		"clients/web/index.html",
