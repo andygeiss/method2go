@@ -1,6 +1,8 @@
 package engines
 
 import (
+	"strings"
+	
 	"{{ .Module }}/services/status"
 )
 
@@ -8,7 +10,7 @@ import (
 type TransformationEngine struct{}
 
 func (a *TransformationEngine) Transform(in string) (out string) {
-	return ""
+	return strings.ToLower(in)
 }
 
 // NewTransformationEngine ...
