@@ -10,7 +10,9 @@ benchmark :
 	@ab -n 1000 -c 1000 http://localhost:3000/
 
 compile :
-	@go build $(LDFLAGS) -o build/$(NAME)_api clients/api/main.go
+	@go build $(LDFLAGS) -o $(GOPATH)/bin/$(NAME)_api clients/api/main.go
+	@go build $(LDFLAGS) -o $(GOPATH)/bin/$(NAME)_cli clients/cli/main.go
+	@go build $(LDFLAGS) -o $(GOPATH)/bin/$(NAME)_web clients/web/main.go
 
 pprof :
 	@go tool pprof out.dump
@@ -22,7 +24,7 @@ request :
 	@curl -s http://localhost:3000/
 
 run :
-	@./build/$(NAME)_api
+	@$(GOPATH)/bin/$(NAME)_api
 
 test :
 	@go test -v ./...

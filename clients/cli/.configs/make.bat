@@ -20,6 +20,7 @@ echo.
 echo start building ...
 go build --ldflags "-s -w -X=main.build=%BUILD% -X=main.name=%NAME% -X=main.version=%VERSION%" -o %GOPATH%\bin\%NAME%_api.exe clients\api\main.go
 go build --ldflags "-s -w -X=main.build=%BUILD% -X=main.name=%NAME% -X=main.version=%VERSION%" -o %GOPATH%\bin\%NAME%_cli.exe clients\cli\main.go
+go build --ldflags "-s -w -X=main.build=%BUILD% -X=main.name=%NAME% -X=main.version=%VERSION%" -o %GOPATH%\bin\%NAME%_web.exe clients\web\main.go
 
 echo cleaning up ...
 del build.txt version.txt

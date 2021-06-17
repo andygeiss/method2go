@@ -52,7 +52,7 @@ class Model extends Component {
         // Add event listeners
         this.on("Status", async (params) => {
             let config = createConfig("POST", params);
-            fetch("http://127.0.0.1:3000/status", config)
+            fetch("http://127.0.0.1:3080/status", config)
                 .then((response) => response.json())
                 .then((data) => {
                     this.emit("Status done", data);
