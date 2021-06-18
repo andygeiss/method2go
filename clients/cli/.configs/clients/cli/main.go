@@ -19,7 +19,7 @@ var (
 func main() {
 	log.Printf("%s %s (%s)\n", name, version, build)
 	// ResourceAccess
-	statusResourceAccess := resourceaccess.NewInMemoryStatus()
+	statusResourceAccess := resourceaccess.NewInMemoryStatusResourceAccess()
 	// Engines
 	transformationEngine := engines.NewLowerCaseTransformationEngine()
 	// Managers
