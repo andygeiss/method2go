@@ -1,4 +1,4 @@
-package repositories
+package resourceaccess
 
 import (
 	"{{ .Module }}/services/status"
@@ -8,7 +8,7 @@ import (
 type InMemoryStatus struct{}
 
 func (a *InMemoryStatus) ID() string {
-	return "repositories.InMemoryStatus"
+	return "resourceAccess.InMemoryStatus"
 }
 
 func (a *InMemoryStatus) ReadStatus() (text string, err error) {
@@ -16,6 +16,6 @@ func (a *InMemoryStatus) ReadStatus() (text string, err error) {
 }
 
 // NewInMemoryStatus ...
-func NewInMemoryStatus() status.Repository {
+func NewInMemoryStatus() status.StatusResourceAccess {
 	return &InMemoryStatus{}
 }

@@ -8,9 +8,9 @@ import (
 
 // Manager ...
 type Manager struct {
-	repository Repository
-	engine     TransformationEngine
-	err        error
+	statusResourceAccess StatusResourceAccess
+	transformationEngine TransformationEngine
+	err                  error
 }
 
 // Error ...
@@ -24,17 +24,17 @@ func (a *Manager) GetStatus(ctx context.Context) (text string) {
 		return
 	}
 	// Step 1 ...
-	ctx = tracing.Call(ctx, a.ID(), a.repository.ID(), "ReadStatus", func() {
-		status, err := a.repository.ReadStatus()
+	ctx = tracing.Call(ctx, a.ID(), a.statusResourceAccess.ID(), "ReadStatus", func() {
+		status, err := a.statusResourceAccess.ReadStatus()
 		if err != nil {
 			a.err = err
 			return
 		}
-		text = status
+		text = status.Text
 	})
 	// Step 2 ...
-	ctx = tracing.Call(ctx, a.ID(), a.engine.ID(), "Transform", func() {
-		text = a.engine.Transform(text)
+	ctx = tracing.Call(ctx, a.ID(), a.transformationEngine.ID(), "Transform", func() {
+		text = a.transformationEngine.Transform(text)
 	})
 	return
 }
@@ -44,9 +44,9 @@ func (a *Manager) ID() string {
 }
 
 // NewManager ...
-func NewManager(engine TransformationEngine, repository Repository) *Manager {
+func NewManager(transformationEngine TransformationEngine, statusResourceAccess StatusResourceAccess) *Manager {
 	return &Manager{
-		repository: repository,
-		engine:     engine,
+		statusResourceAccess: statusResourceAccess,
+		transformationEngine: transformationEngine,
 	}
 }

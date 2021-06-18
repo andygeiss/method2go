@@ -6,7 +6,7 @@ import (
 	"time"
 	
 	"{{ .Module }}/services/status/engines"
-	"{{ .Module }}/services/status/repositories"
+	"{{ .Module }}/services/status/resourceaccess"
 	"{{ .Module }}/services/status"
 )
 
@@ -19,11 +19,11 @@ var (
 func main() {
 	log.Printf("%s %s (%s)\n", name, version, build)
 	// ResourceAccess
-	repository := repositories.NewInMemoryStatus()
+	statusResourceAccess := resourceaccess.NewInMemoryStatus()
 	// Engines
-	engine := engines.NewLowerCaseTransformationEngine()
+	transformationEngine := engines.NewLowerCaseTransformationEngine()
 	// Managers
-	statusManager := status.NewManager(engine, repository)
+	statusManager := status.NewManager(transformationEngine, statusResourceAccess)
 	// Set a timeout for the whole use case
 	ctx := context.Background()
 	ctx, cancel := context.WithTimeout(ctx, time.Second*3)
