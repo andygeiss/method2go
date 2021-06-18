@@ -10,7 +10,7 @@ import (
 type LowerCaseTransformationEngine struct{}
 
 func (a *LowerCaseTransformationEngine) ID() string {
-	return "engines.LowerCaseTransformationEngine"
+	return "status.LowerCaseTransformationEngine"
 }
 
 func (a *LowerCaseTransformationEngine) Transform(in string) (out string) {

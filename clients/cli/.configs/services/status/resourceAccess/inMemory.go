@@ -5,22 +5,22 @@ import (
 )
 
 
-// InMemoryStatus ...
-type InMemoryStatus struct {
+// InMemoryStatusResourceAccess ...
+type InMemoryStatusResourceAccess struct {
 	status *status.Status
 }
 
-func (a *InMemoryStatus) ID() string {
-	return "resourceAccess.InMemoryStatus"
+func (a *InMemoryStatusResourceAccess) ID() string {
+	return "status.InMemoryStatusResourceAccess"
 }
 
-func (a *InMemoryStatus) ReadStatus() (status *status.Status, err error) {
+func (a *InMemoryStatusResourceAccess) ReadStatus() (status *status.Status, err error) {
 	return a.status, nil
 }
 
-// NewInMemoryStatus ...
-func NewInMemoryStatus() status.StatusResourceAccess {
-	return &InMemoryStatus{
+// NewInMemoryStatusResourceAccess ...
+func NewInMemoryStatusResourceAccess() status.StatusResourceAccess {
+	return &InMemoryStatusResourceAccess{
 		status: &status.Status{Text: "OK"},
 	}
 }
