@@ -1,4 +1,4 @@
-package repositories
+package resourceaccess
 
 import (
 	"os"
@@ -28,7 +28,7 @@ func (a *FileSystem) GenerateProjectStructure(p *project.Project) (err error) {
 }
 
 // NewFileSystem ...
-func NewFileSystem(path string, files []string) project.Repository {
+func NewFileSystem(path string, files []string) project.ProjectResourceAccess {
 	return &FileSystem{
 		files: files,
 		path:  path,

@@ -18,6 +18,11 @@ type Project struct {
 	Templates map[string]string `json:"templates"`
 }
 
+// ProjectResourceAccess ...
+type ProjectResourceAccess interface {
+	GenerateProjectStructure(p *Project) (err error)
+}
+
 // NewProject ...
 func NewProject(name string) *Project {
 	wd, _ := os.Getwd()
