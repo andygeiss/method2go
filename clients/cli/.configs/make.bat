@@ -18,8 +18,8 @@ echo VERSION = %VERSION%
 echo.
 
 echo start building ...
-go mod download github.com/andygeiss/utilities/logging
-go mod download github.com/andygeiss/utilities/tracing
+go get github.com/andygeiss/utilities/logging
+go get github.com/andygeiss/utilities/tracing
 go build --ldflags "-s -w -X=main.build=%BUILD% -X=main.name=%NAME% -X=main.version=%VERSION%" -o %GOPATH%\bin\%NAME%_api.exe clients\api\main.go
 go build --ldflags "-s -w -X=main.build=%BUILD% -X=main.name=%NAME% -X=main.version=%VERSION%" -o %GOPATH%\bin\%NAME%_cli.exe clients\cli\main.go
 go build --ldflags "-s -w -X=main.build=%BUILD% -X=main.name=%NAME% -X=main.version=%VERSION%" -o %GOPATH%\bin\%NAME%_web.exe clients\web\main.go

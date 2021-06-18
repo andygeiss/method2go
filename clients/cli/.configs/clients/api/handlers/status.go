@@ -31,7 +31,12 @@ func NewStatusHandler(manager *status.Manager) (hf http.HandlerFunc) {
 			ctx, cancel := context.WithTimeout(ctx, time.Second*3)
 			defer cancel()
 			tracePath := filepath.Join("tracing")
-			// Trace ...
+			// Add actors ...
+			trace := tracing.FromContext(ctx)
+			trace.Register(handlerID)
+			trace.Register(manager.ID())
+			ctx = trace.ToContext(ctx)
+			// Do the calls ...
 			ctx = tracing.Call(ctx, handlerID, manager.ID(), "GetStatus", func() {
 				// Decode the request
 				err = json.NewDecoder(r.Body).Decode(&req)
