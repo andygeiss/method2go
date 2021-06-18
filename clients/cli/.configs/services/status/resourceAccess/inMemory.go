@@ -4,18 +4,23 @@ import (
 	"{{ .Module }}/services/status"
 )
 
+
 // InMemoryStatus ...
-type InMemoryStatus struct{}
+type InMemoryStatus struct {
+	status *status.Status
+}
 
 func (a *InMemoryStatus) ID() string {
 	return "resourceAccess.InMemoryStatus"
 }
 
-func (a *InMemoryStatus) ReadStatus() (text string, err error) {
-	return "OK", nil
+func (a *InMemoryStatus) ReadStatus() (status *status.Status, err error) {
+	return a.status, nil
 }
 
 // NewInMemoryStatus ...
 func NewInMemoryStatus() status.StatusResourceAccess {
-	return &InMemoryStatus{}
+	return &InMemoryStatus{
+		status: &status.Status{Text: "OK"},
+	}
 }
