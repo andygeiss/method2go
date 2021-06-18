@@ -34,7 +34,6 @@ func NewStatusHandler(manager *status.Manager) (hf http.HandlerFunc) {
 			// Add actors ...
 			trace := tracing.FromContext(ctx)
 			trace.Register(handlerID)
-			trace.Register(manager.ID())
 			ctx = trace.ToContext(ctx)
 			// Do the calls ...
 			ctx = tracing.Call(ctx, handlerID, manager.ID(), "GetStatus", func() {

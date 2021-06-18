@@ -23,6 +23,12 @@ func (a *Manager) GetStatus(ctx context.Context) (text string) {
 	if a.err != nil {
 		return
 	}
+	// Add actors ...
+	trace := tracing.FromContext(ctx)
+	trace.Register(manager.ID())
+	trace.Register(a.statusResourceAccess.ID())
+	trace.Register(a.transformationEngine.ID())
+	ctx = trace.ToContext(ctx)
 	// Step 1 ...
 	ctx = tracing.Call(ctx, a.ID(), a.statusResourceAccess.ID(), "ReadStatus", func() {
 		status, err := a.statusResourceAccess.ReadStatus()
