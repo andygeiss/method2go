@@ -25,7 +25,7 @@ func (a *Manager) GetStatus(ctx context.Context) (text string) {
 	}
 	// Add actors ...
 	trace := tracing.FromContext(ctx)
-	trace.Register(manager.ID())
+	trace.Register(a.ID())
 	trace.Register(a.statusResourceAccess.ID())
 	trace.Register(a.transformationEngine.ID())
 	ctx = trace.ToContext(ctx)
