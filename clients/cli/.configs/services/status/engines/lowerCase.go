@@ -6,14 +6,18 @@ import (
 	"{{ .Module }}/services/status"
 )
 
-// TransformationEngine ...
-type TransformationEngine struct{}
+// LowerCaseTransformationEngine ...
+type LowerCaseTransformationEngine struct{}
 
-func (a *TransformationEngine) Transform(in string) (out string) {
+func (a *LowerCaseTransformationEngine) ID() string {
+	return "engines.LowerCaseTransformationEngine"
+}
+
+func (a *LowerCaseTransformationEngine) Transform(in string) (out string) {
 	return strings.ToLower(in)
 }
 
-// NewTransformationEngine ...
-func NewTransformationEngine() status.TransformationEngine {
-	return &TransformationEngine{}
+// NewLowerCaseTransformationEngine ...
+func NewLowerCaseTransformationEngine() status.TransformationEngine {
+	return &LowerCaseTransformationEngine{}
 }

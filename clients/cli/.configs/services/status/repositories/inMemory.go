@@ -7,6 +7,10 @@ import (
 // InMemoryStatus ...
 type InMemoryStatus struct{}
 
+func (a *InMemoryStatus) ID() string {
+	return "repositories.InMemoryStatus"
+}
+
 func (a *InMemoryStatus) ReadStatus() (text string, err error) {
 	return "OK", nil
 }

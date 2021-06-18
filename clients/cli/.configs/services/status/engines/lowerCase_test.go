@@ -8,7 +8,7 @@ import (
 )
 
 func TestTransformationEngine_Transform_Should_Return_Without_A_Correct_Text(t *testing.T) {
-	engine := engines.NewTransformationEngine()
+	engine := engines.NewLowerCaseTransformationEngine()
 	text := engine.Transform("OK")
 	assert.That("text should be ok", t, text, "ok")
 }

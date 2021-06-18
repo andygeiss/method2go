@@ -21,9 +21,9 @@ func main() {
 	// ResourceAccess
 	repository := repositories.NewInMemoryStatus()
 	// Engines
-	engine := engines.NewTransformationEngine()
+	engine := engines.NewLowerCaseTransformationEngine()
 	// Managers
-	statusManager := status.NewManager("status.Manager", engine, repository)
+	statusManager := status.NewManager(engine, repository)
 	// Set a timeout for the whole use case
 	ctx := context.Background()
 	ctx, cancel := context.WithTimeout(ctx, time.Second*3)

@@ -1,10 +1,13 @@
 package status
 
-import "context"
+import (
+	"context"
+
+	"github.com/andygeiss/utilities/tracing"
+)
 
 // Manager ...
 type Manager struct {
-	ID         string
 	repository Repository
 	engine     TransformationEngine
 	err        error
@@ -20,19 +23,29 @@ func (a *Manager) GetStatus(ctx context.Context) (text string) {
 	if a.err != nil {
 		return
 	}
-	text, err := a.repository.ReadStatus()
-	if err != nil {
-		a.err = err
-		return
-	}
-	transformed := a.engine.Transform(text)
-	return transformed
+	// Step 1 ...
+	ctx = tracing.Call(ctx, a.ID(), a.repository.ID(), "ReadStatus", func() {
+		status, err := a.repository.ReadStatus()
+		if err != nil {
+			a.err = err
+			return
+		}
+		text = status
+	})
+	// Step 2 ...
+	ctx = tracing.Call(ctx, a.ID(), a.engine.ID(), "Transform", func() {
+		text = a.engine.Transform(text)
+	})
+	return
+}
+
+func (a *Manager) ID() string {
+	return "status.Manager"
 }
 
 // NewManager ...
-func NewManager(id string, engine TransformationEngine, repository Repository) *Manager {
+func NewManager(engine TransformationEngine, repository Repository) *Manager {
 	return &Manager{
-		ID:         id,
 		repository: repository,
 		engine:     engine,
 	}

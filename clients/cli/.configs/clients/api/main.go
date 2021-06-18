@@ -22,9 +22,9 @@ func main() {
 	// ResourceAccess
 	repository := repositories.NewInMemoryStatus()
 	// Engines
-	engine := engines.NewTransformationEngine()
+	engine := engines.NewLowerCaseTransformationEngine()
 	// Managers
-	statusManager := status.NewManager("status.Manager", engine, repository)
+	statusManager := status.NewManager(engine, repository)
 	// Handlers
 	http.HandleFunc("/status", handlers.NewStatusHandler(statusManager))
 	http.ListenAndServe(":3000", nil)
