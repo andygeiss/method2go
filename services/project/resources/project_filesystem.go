@@ -1,4 +1,4 @@
-package resourceaccess
+package resources
 
 import (
 	"os"
@@ -7,13 +7,13 @@ import (
 	"github.com/andygeiss/method2go/services/project"
 )
 
-// FileSystem ...
-type FileSystem struct {
+// ProjectResourceAccessFileSystem ...
+type ProjectResourceAccessFileSystem struct {
 	files []string
 	path  string
 }
 
-func (a *FileSystem) GenerateProjectStructure(p *project.Project) (err error) {
+func (a *ProjectResourceAccessFileSystem) GenerateProjectStructure(p *project.Project) (err error) {
 	for _, file := range a.files {
 		dst := filepath.Join(a.path, file)
 		data := []byte(p.Contents[file])
@@ -27,9 +27,9 @@ func (a *FileSystem) GenerateProjectStructure(p *project.Project) (err error) {
 	return nil
 }
 
-// NewFileSystem ...
-func NewFileSystem(path string, files []string) project.ProjectResourceAccess {
-	return &FileSystem{
+// NewProjectResourceAccessFileSystem ...
+func NewProjectResourceAccessFileSystem(path string, files []string) project.ProjectResourceAccess {
+	return &ProjectResourceAccessFileSystem{
 		files: files,
 		path:  path,
 	}
