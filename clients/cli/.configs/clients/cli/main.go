@@ -6,7 +6,7 @@ import (
 	"time"
 	
 	"{{ .Module }}/services/status/engines"
-	"{{ .Module }}/services/status/resourceaccess"
+	"{{ .Module }}/services/status/resources"
 	"{{ .Module }}/services/status"
 )
 
@@ -19,7 +19,7 @@ var (
 func main() {
 	log.Printf("%s %s (%s)\n", name, version, build)
 	// ResourceAccess
-	statusResourceAccess := resourceaccess.NewInMemoryStatusResourceAccess()
+	statusResourceAccess := resources.NewInMemoryStatusResourceAccess()
 	// Engines
 	transformationEngine := engines.NewLowerCaseTransformationEngine()
 	// Managers
