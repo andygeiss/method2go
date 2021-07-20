@@ -1,8 +1,6 @@
 package resources_test
 
 import (
-	"os"
-	"path/filepath"
 	"testing"
 
 	"{{ .Module }}/services/status"

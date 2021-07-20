@@ -1,9 +1,6 @@
 package resources
 
 import (
-	"os"
-	"path/filepath"
-
 	"{{ .Module }}/services/status"
 )
 
@@ -14,7 +11,7 @@ func (a *InMemoryStatusResourceAccess) ID() string {
 	return "resources.InMemoryStatusResourceAccess"
 }
 
-func (a *InMemoryStatusResourceAccess) ReadStatus() (status *Status, err error) {
+func (a *InMemoryStatusResourceAccess) ReadStatus() (status *status.Status, err error) {
 	return status.NewStatus("OK"), nil 
 }
 
