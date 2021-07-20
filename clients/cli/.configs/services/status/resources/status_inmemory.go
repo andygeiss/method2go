@@ -11,7 +11,7 @@ func (a *InMemoryStatusResourceAccess) ID() string {
 	return "resources.InMemoryStatusResourceAccess"
 }
 
-func (a *InMemoryStatusResourceAccess) ReadStatus() (status *status.Status, err error) {
+func (a *InMemoryStatusResourceAccess) ReadStatus() (stat *status.Status, err error) {
 	return status.NewStatus("OK"), nil 
 }
 
