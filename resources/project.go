@@ -1,4 +1,4 @@
-package project
+package resources
 
 import (
 	"encoding/hex"

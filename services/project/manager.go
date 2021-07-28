@@ -4,23 +4,25 @@ import (
 	"context"
 	"os"
 	"os/exec"
+
+	"github.com/andygeiss/method2go/resources"
 )
 
 // Manager ...
 type Manager struct {
-	resourceAccess ProjectResourceAccess
+	resourceAccess resources.ProjectResourceAccess
 	engine         TemplateEngine
 	err            error
 }
 
 // Create ...
-func (a *Manager) CreateByName(c context.Context, name string) (p *Project) {
+func (a *Manager) CreateByName(c context.Context, name string) (p *resources.Project) {
 	// Skip action on a previous error.
 	if a.err != nil {
 		return
 	}
 	// Create a new project by name.
-	p = NewProject(name)
+	p = resources.NewProject(name)
 	// Init templates
 	a.engine.InitTemplates(p)
 	// Generate the project structure.
@@ -43,7 +45,7 @@ func (a *Manager) Error() error {
 }
 
 // NewManager ...
-func NewManager(e TemplateEngine, ra ProjectResourceAccess) *Manager {
+func NewManager(e TemplateEngine, ra resources.ProjectResourceAccess) *Manager {
 	return &Manager{
 		resourceAccess: ra,
 		engine:         e,

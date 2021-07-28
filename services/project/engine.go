@@ -9,11 +9,13 @@ import (
 	"strings"
 	"text/template"
 	"unicode"
+
+	"github.com/andygeiss/method2go/resources"
 )
 
 // TemplateEngine ...
 type TemplateEngine interface {
-	InitTemplates(p *Project) error
+	InitTemplates(p *resources.Project) error
 }
 
 // DefaultTemplateEngine ...
@@ -23,7 +25,7 @@ type DefaultTemplateEngine struct {
 	path   string
 }
 
-func (a *DefaultTemplateEngine) InitTemplates(p *Project) error {
+func (a *DefaultTemplateEngine) InitTemplates(p *resources.Project) error {
 	for _, file := range a.files {
 		src := filepath.ToSlash(filepath.Join(a.path, file))
 		raw := safeReadAll(a.access, src)

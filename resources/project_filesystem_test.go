@@ -6,14 +6,13 @@ import (
 	"testing"
 
 	"github.com/andygeiss/method2go/resources"
-	"github.com/andygeiss/method2go/services/project"
 	assert "github.com/andygeiss/utilities/testing"
 )
 
 func TestFileSystem_GenerateProjectStructure_Should_Return_Without_An_Error(t *testing.T) {
 	os.RemoveAll("testdata")
 	access := resources.NewProjectResourceAccessFileSystem("testdata", []string{"foo/bar/foo.txt"})
-	project := &project.Project{
+	project := &resources.Project{
 		Contents: map[string]string{
 			"foo/bar/foo.txt": "bar",
 		},
