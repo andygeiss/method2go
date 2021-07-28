@@ -1,11 +1,10 @@
-package engines_test
+package project_test
 
 import (
 	"embed"
 	"testing"
 
 	"github.com/andygeiss/method2go/services/project"
-	"github.com/andygeiss/method2go/services/project/engines"
 	assert "github.com/andygeiss/utilities/testing"
 )
 
@@ -13,7 +12,7 @@ import (
 var content embed.FS
 
 func TestDefaultTemplateEngine_InitTemplates_Should_Return_Without_An_Error(t *testing.T) {
-	te := engines.NewDefaultTemplateEngine(&content, "testdata/templates", []string{"main.go"})
+	te := project.NewDefaultTemplateEngine(&content, "testdata/templates", []string{"main.go"})
 	project := project.NewProject("test")
 	err := te.InitTemplates(project)
 	mainGoTemplate, mainGoTemplateDefined := project.Templates["main.go"]

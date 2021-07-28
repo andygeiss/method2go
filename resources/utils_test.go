@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/andygeiss/method2go/services/project/resources"
+	"github.com/andygeiss/method2go/resources"
 	assert "github.com/andygeiss/utilities/testing"
 )
 
