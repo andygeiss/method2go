@@ -2,10 +2,6 @@
 
 **Create a software project out-of-the-box by using the building blocks from Juval Löwy's method in [Righting Software](https://rightingsoftware.org/) combined with Golang as a code generator.**
 
-#### Table of Contents
-
-- [Installation]()
-
 ## Introduction
 
 Software Engineering and especially decoupling of larger software systems is not an easy task. You can break down your system based on functionality, domains and volatility. There are multiple, different approaches out there.
@@ -35,3 +31,5 @@ Finally simple specifiy the project name as the first parameter.
 This will generate the following structure:
 
 ![Tree](tree.png)
+
+![Layers](layers.png)
