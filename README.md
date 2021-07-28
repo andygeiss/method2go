@@ -30,6 +30,39 @@ Finally simple specifiy the project name as the first parameter.
 
 This will generate the following structure:
 
-![Tree](tree.png)
+    example/
+    ├── clients
+    │   ├── api
+    │   │   ├── contracts
+    │   │   │   ├── contracts.go
+    │   │   │   └── contracts.http
+    │   │   ├── handlers
+    │   │   │   ├── status.go
+    │   │   │   └── utils.go
+    │   │   └── main.go
+    │   ├── cli
+    │   │   └── main.go
+    │   └── web
+    │       ├── index.html
+    │       ├── scripts
+    │       │   └── app.js
+    │       └── styles
+    │           ├── app.scss
+    │           └── colors.scss
+    ├── go.mod
+    ├── Makefile
+    └── services
+        └── status
+            ├── engine.go
+            ├── engines
+            │   ├── lowerCase.go
+            │   └── lowerCase_test.go
+            ├── manager.go
+            ├── manager_test.go
+            ├── mockups_test.go
+            ├── resourceAccess.go
+            └── resources
+                ├── inMemory.go
+                └── inMemory_test.go
 
 ![Layers](layers.png)
