@@ -1,13 +1,15 @@
 package status_test
 
+import "{{ .Module }}/resources"
+
 type MockupRepository struct{}
 
 func (a *MockupRepository) ID() string {
 	return "MockupRepository"
 }
 
-func (a *MockupRepository) ReadStatus() (text string, err error) {
-	return "OK", nil
+func (a *MockupRepository) ReadStatus() (stat *resources.Status, err error) {
+	return resources.NewStatus("OK"), nil
 }
 
 type MockupTransformationEngine struct{}

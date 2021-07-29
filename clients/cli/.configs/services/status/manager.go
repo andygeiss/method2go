@@ -3,12 +3,13 @@ package status
 import (
 	"context"
 
+	"{{ .Module }}/resources"
 	"github.com/andygeiss/utilities/tracing"
 )
 
 // Manager ...
 type Manager struct {
-	statusResourceAccess StatusResourceAccess
+	statusResourceAccess resources.StatusResourceAccess
 	transformationEngine TransformationEngine
 	err                  error
 }
@@ -50,7 +51,7 @@ func (a *Manager) ID() string {
 }
 
 // NewManager ...
-func NewManager(transformationEngine TransformationEngine, statusResourceAccess StatusResourceAccess) *Manager {
+func NewManager(transformationEngine TransformationEngine, statusResourceAccess resources.StatusResourceAccess) *Manager {
 	return &Manager{
 		statusResourceAccess: statusResourceAccess,
 		transformationEngine: transformationEngine,

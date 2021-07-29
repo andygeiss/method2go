@@ -1,4 +1,4 @@
-package status
+package resources
 
 // Status ...
 type Status struct {

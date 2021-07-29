@@ -6,8 +6,7 @@ import (
 	_ "net/http/pprof"
 
 	"{{ .Module }}/clients/api/handlers"
-	"{{ .Module }}/services/status/engines"
-	"{{ .Module }}/services/status/resources"
+	"{{ .Module }}/resources"
 	"{{ .Module }}/services/status"
 )
 
@@ -22,7 +21,7 @@ func main() {
 	// ResourceAccess
 	statusResourceAccess := resources.NewInMemoryStatusResourceAccess()
 	// Engines
-	transformationEngine := engines.NewLowerCaseTransformationEngine()
+	transformationEngine := status.NewLowerCaseTransformationEngine()
 	// Managers
 	statusManager := status.NewManager(transformationEngine, statusResourceAccess)
 	// Handlers

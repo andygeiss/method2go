@@ -1,14 +1,14 @@
-package engines_test
+package status_test
 
 import (
 	"testing"
 
-	"{{ .Module }}/services/status/engines"
+	"{{ .Module }}/services/status"
 	assert "github.com/andygeiss/utilities/testing"
 )
 
 func TestTransformationEngine_Transform_Should_Return_Without_A_Correct_Text(t *testing.T) {
-	engine := engines.NewLowerCaseTransformationEngine()
+	engine := status.NewLowerCaseTransformationEngine()
 	text := engine.Transform("OK")
 	assert.That("text should be ok", t, text, "ok")
 }

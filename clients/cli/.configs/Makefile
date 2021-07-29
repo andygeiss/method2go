@@ -27,4 +27,5 @@ run :
 	@$(GOPATH)/bin/$(NAME)_api
 
 test :
+	@go mod tidy
 	@go test -v ./...

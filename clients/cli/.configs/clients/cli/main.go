@@ -5,8 +5,7 @@ import (
 	"log"
 	"time"
 	
-	"{{ .Module }}/services/status/engines"
-	"{{ .Module }}/services/status/resources"
+	"{{ .Module }}/resources"
 	"{{ .Module }}/services/status"
 )
 
@@ -21,7 +20,7 @@ func main() {
 	// ResourceAccess
 	statusResourceAccess := resources.NewInMemoryStatusResourceAccess()
 	// Engines
-	transformationEngine := engines.NewLowerCaseTransformationEngine()
+	transformationEngine := status.NewLowerCaseTransformationEngine()
 	// Managers
 	statusManager := status.NewManager(transformationEngine, statusResourceAccess)
 	// Set a timeout for the whole use case

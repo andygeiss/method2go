@@ -3,8 +3,7 @@ package resources_test
 import (
 	"testing"
 
-	"{{ .Module }}/services/status"
-	"{{ .Module }}/services/status/resources"
+	"{{ .Module }}/resources"
 	assert "github.com/andygeiss/utilities/testing"
 )
 
