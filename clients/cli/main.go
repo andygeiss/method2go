@@ -63,7 +63,6 @@ func main() {
 		"services/status/mockups_test.go",
 		"Makefile",
 		"make.bat",
-		"status.plantuml",
 	}
 	ensureDefaults()
 	name := os.Args[1]
