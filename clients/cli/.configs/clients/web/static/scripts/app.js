@@ -88,7 +88,7 @@ class View extends Component {
         this.viewModel = viewModel;
         // Add event listeners
         this.on("Status done", (data) => {
-           this.render();
+            this.render();
         });
         this.on("Status error", (err) => {
             this.render();
